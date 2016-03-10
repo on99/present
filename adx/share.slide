@@ -44,7 +44,7 @@
 
 * 缺乏测试
 
-.image test_in_production.jpg
+.image test_in_production.jpg _ 450
 
 * 单例模式
 
