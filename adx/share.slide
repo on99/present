@@ -1,0 +1,98 @@
+解放老崔
+10 March 2016
+
+黄驰铭
+
+* 开发方面老崔的责任
+
+- 写代码
+- 审核代码
+- 手动运行测试
+- 部署
+- etc...
+
+* 目标
+
+- 写代码
+- 写代码
+- 写代码
+- 偶尔审核代码
+
+* 已知问题
+
+- 缺乏依赖管理
+- 无持续集成
+- 缺乏测试
+- 单例模式
+- 代码质量
+- Minor issues 
+
+* 缺乏依赖管理
+
+- 很难保证 development/staging/production 依赖一致
+- 初始化项目异常艰难, 相比 go get
+
+* 无持续集成
+
+提交代码前手动运行
+
+- lint
+- test
+- etc...
+
+如果忘了呢?
+
+* 缺乏测试
+
+.image test_in_production.jpg
+
+* 单例模式
+
+[[http://stackoverflow.com/questions/137975/what-is-so-bad-about-singletons][What is so bad about singletons?]]
+
+It's rare that you need a singleton. The reason they're bad is that they feel like a global and they're a fully paid up member of the GoF Design Patterns book.
+
+- 依赖被隐藏起来
+- 违背单一功能原则
+- 紧密耦合, 使得测试非常难写
+- global state 无法 mock, 测试必须要按顺序来, 无法单元测试
+
+* 代码质量
+
+仅供参考, 一起谈论.
+
+.image wtfm.jpg
+
+* 代码质量
+
+- [[https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)][SOLID]]
+- [[https://en.wikipedia.org/wiki/Don%27t_repeat_yourself][DRY]]
+- [[https://en.wikipedia.org/wiki/KISS_principle][KISS]]
+- 依赖注入 vs 全局变量
+- 难测试的代码是烂代码, 性能再好也是
+
+
+* Minor issues
+
+- 无 API 版本控制
+- 数据库版本控制的方式
+
+* 如何改进
+
+- 不断重构
+- Follow go convention
+- 过早优化是万恶之源
+- 测试覆盖率不能下降
+- 用好工具
+
+* 工具
+
+- 代码托管: github 有非常多好用的[[https://github.com/integrations][集成服务]]
+- 依赖管理: [[https://github.com/tools/godep][godep]]
+- 持续集成: [[https://travis-ci.org][travis]] (付费) <github 的一个集成服务>
+- 测试覆盖率报告: [[https://codecov.io][codecov]] (付费) <github 的一个集成服务>
+- 内部沟通: [[https://slack.com][Slack]] (付费) 有非常多好用的集成服务(包括 github, travis 等)
+- linter: [[https://github.com/alecthomas/gometalinter][gometalinter]]
+- go 版本控制: [[https://github.com/moovweb/gvm][gvm]]
+- 数据库版本控制: [[https://bitbucket.org/liamstask/goose][goose]]
+- etc...
