@@ -54,10 +54,9 @@ Graylog
 * 警报
 
 - email
-- http webhook
+- http callback
 - slack
-- 可以自己写插件, 也有现成插件 https://marketplace.graylog.org/addons?kind=plugin
-
+- 可以自己写插件, 也有别人开发的 [[https://marketplace.graylog.org/addons?kind=plugin][Marketplace-Plugin]]
 * 易于横向扩展
 
 - 单机
@@ -65,11 +64,11 @@ Graylog
 
 * 单机
 
-.image simple_setup.png _ 450
+.image simple_setup.png _ 500
 
 * 集群
 
-.image extended_setup.png _ 450
+.image extended_setup.png _ 500
 
 * 如何搭建
 
