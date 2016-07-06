@@ -1,0 +1,78 @@
+Graylog
+6 July 2016
+
+黄驰铭
+
+* 日志现有问题
+
+- 可读性差
+- 查询麻烦
+
+* 我们需要什么
+
+- 够用的写入格式
+- 丰富的传输协议
+- 根据关键字查询日志
+- 统计分析
+- 友好的 UI 
+- 警报
+- 易于横向扩展
+- etc...(请补充)
+
+* 现有的解决方案
+
+- Splunk
+- ELK
+- TICK
+- Graylog
+- etc...
+
+* 为何 Graylog
+
+- 简单
+- 免费
+- 我们需要的都支持
+
+* 够用的写入格式
+
+- GELF (Graylog extended log format)
+- Raw/Plaintext
+- Syslog
+
+* 丰富的传输协议
+
+- HTTP
+- TCP
+- UDP
+- AMQP
+- Kafka
+
+* 查询, 统计, 展示
+
+这个没什么可以说的
+
+* 警报
+
+- email
+- http webhook
+- slack
+- 可以自己写插件, 也有现成插件 https://marketplace.graylog.org/addons?kind=plugin
+
+* 易于横向扩展
+
+- 单机
+- 集群
+
+* 单机
+
+.image simple_setup.png _ 450
+
+* 集群
+
+.image extended_setup.png _ 450
+
+* 如何搭建
+
+下载 https://github.com/yumimobi/anoapi/tree/master/playbooks
+
+运行 ansible-playbook -i hosts init.yml -v
