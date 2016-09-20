@@ -1,0 +1,154 @@
+GPG
+20 Sep 2016
+
+黄驰铭
+北京掌游天下 & 玉米广告
+huangchiming@zplay.com
+
+* 概览 
+
+- Why
+- What
+- How
+- Demo
+- QA
+
+* Why
+
+关于敏感信息
+
+- 如何传输
+- 如何保存
+
+* Why
+
+- 通过 QQ, Email 等不安全的信道传输敏感信息, 存在被截获的风险
+- 无加密文件保存密码, 极易被盗
+
+GPG 可以很好地解决这些问题
+
+* What
+
+- [[https://en.wikipedia.org/wiki/Pretty_Good_Privacy][PGP]] (Pretty Good Privacy)
+- [[https://tools.ietf.org/html/rfc4880][OpenPGP]] (Open-source PGP standard)
+- [[https://www.gnupg.org/documentation/manuals/gnupg/][GPG]] (GNU Privacy Guard)
+
+* How
+
+加密方式:
+
+- [[https://en.wikipedia.org/wiki/Symmetric-key_algorithm][对称加密]] (AES, DES, XXTEA, etc...)
+- [[https://en.wikipedia.org/wiki/Public-key_cryptography][非对称加密]] (RSA, DSA, etc...)
+
+* 非对称加密
+
+key pairs:
+
+- Public key
+- Private key
+
+用接收者的公钥, 加密一个文件, 只有该公钥对应的私钥才能解密
+
+* gpg2 安装
+
+- 安装 gpg2
+  - brew install gpg2
+  - sudo yum install gpg2
+  - sudo apt-get install gpg2
+
+* gpg2 生成 key
+
+- 生成密钥对
+  - gpg2 --gen-key
+- 查看指纹
+  - gpg2 --fingerprint huangchiming@zplay.com
+- 查看所有 key
+  - gpg2 --list-keys
+
+* gpg2 导出 key 
+
+- 导出 key 文件
+  - gpg2 --export --armor huangchiming@zplay.com > my_public_key
+
+或者
+
+- 将自己的公钥发布到 key-server 让别人能找到
+  - gpg2 --send-keys $fingerprint
+
+* gpg2 导入 key
+
+- 导入 key 文件
+  - gpg2 --import $public_key_file
+
+或者
+
+- 从 key-server 搜索别人的公钥
+  - gpg2 --search-keys zplay
+- 从 key-server 获取别人的公钥
+  - gpg2 --recv-keys $fingerprint 
+
+* gpg2 trust(相信)别人的公钥
+
+只有这样才能用他的公钥进行加密
+
+- 对别人的公钥签名
+  - gpg2 --sign-key cuiyingjie@gmail.com
+
+* gpg2 加解密文件
+
+- 加密一个文件发给 cuiyingjie@gmail.com
+  - gpg2 --recipient cuiyingjie@gmail.com --encrypt $file
+  - gpg2 --recipient cuiyingjie@gmail.com --encrypt --sign $file
+- 解密一个文件
+  - gpg2 $file
+- 加密一段文字并转换成 ASCII 码发给 cuiyingjie@gmail.com
+  - echo "plaintext"  | gpg2 --recipient cuiyingjie@gmail.com --encrypt --armor
+- 解密一段 ASCII 码
+  - echo "$ascii" | gpg2
+
+* Demo
+
+- 传输加密文件
+- 用 [[https://www.passwordstore.org/][Pass]] 管理密码 (利用 gpg 加密敏感信息, git 追踪密码改变历史记录)
+
+* Pass 安装
+
+- 安装
+  - brew install pass
+  - yum install pass ?
+  - apt-get install pass ?
+
+* Pass 初始化 password-store
+
+- 初始化
+  - pass init cuiyingjie@gmail.com
+- 初始化 git
+  - pass git init
+  - pass git remote add origin git@github.com:yumimobi/password-store.git
+
+或者直接下载已有的 password-store
+
+- 下载 password-store
+  - hub clone yumimobi/password-store ~/.password-store
+
+* Pass 插入密码
+
+- 初始化一个密码文件夹
+  - pass init -p adx/rds/read-only cuiyingjie@gmail.com huangchiming@zplay.com
+- 往文件夹中插入密码文件
+  - pass insert adx/rds/read-only
+- 随机生成密码并插入密码文件
+  - pass generate -m adx/rds/read-only 15
+- 利用默认编辑器编辑密码文件
+  - pass edit adx/rds/read-only
+
+* Pass 读取密码
+
+- 读取密码显示到 console
+  - pass adx/rds/read-only
+- 读取密码复制到剪贴板 (不显示出来, 更安全)
+  - pass -c adx/rds/read-only
+
+* QA
+
+分享文件在 https://github.com/on99/present
