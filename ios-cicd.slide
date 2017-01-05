@@ -1,0 +1,38 @@
+iOS 持续集成 持续部署
+05 Jan 2017
+
+黄驰铭
+北京掌游天下 & 玉米广告
+huangchiming@zplay.com
+
+* 问题
+
+- 什么是持续集成/持续部署 (CI/CD)
+- 有什么好处
+
+* 具体流程
+
+- 提交代码
+- 运行测试
+- 部署
+
+* iOS APP 部署
+
+- 编译
+- 用发布证书签名(!!!最头疼的步骤)
+- 发送到分发服务器(测试)/App Store(生产环境)
+
+*  工具
+
+- github(代码托管服务)
+- travis(持续集成服务)
+- fastlane(测试,发布工具)
+- hockeyapp(分发服务)
+
+* Demo
+
+demo iOS APP 工程在 https://github.com/on99/cicd
+
+* QA
+
+分享文件在 https://github.com/on99/present
